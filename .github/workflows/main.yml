@@ -1,0 +1,18 @@
+name: AWS OIDC Proof (Manual Run)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+
+jobs:
+  proof:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::863518413691:role/sts-lab-2-target
+          aws-region: us-east-1
+
+      - run: aws sts get-caller-identity
