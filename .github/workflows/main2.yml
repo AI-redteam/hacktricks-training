@@ -20,3 +20,5 @@ jobs:
 
       - name: List secrets
         run: aws secretsmanager list-secrets
+      - name: Get lab 2 flag
+        run: aws secretsmanager get-secret-value --secret-id flag_sts_lab_2 --query SecretString --output text
