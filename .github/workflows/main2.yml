@@ -1,0 +1,22 @@
+name: AWS OIDC Lab 20 (Enum)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+
+jobs:
+  enum:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::863518413691:role/sts-lab-2-target
+          aws-region: us-east-1
+
+      - name: Verify assumed role
+        run: aws sts get-caller-identity
+
+      - name: List secrets
+        run: aws secretsmanager list-secrets
